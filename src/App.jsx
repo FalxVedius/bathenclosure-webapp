@@ -9,8 +9,7 @@ function App() {
 
   return (
     <>
-      <section id="center">
-        <nav>
+          <nav>
         <h1>Glassco Bath Shower Glass Generator</h1>
     </nav>
 
@@ -195,8 +194,6 @@ function App() {
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div>
-      </section>
-
     </>
   )
 }
