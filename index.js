@@ -11,6 +11,10 @@ app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb'}));
 app.use(express.static('public'));
 
+app.get("/", function (req, res) {
+    res.send("hello world");
+})
+
 
 // routes
 app.post('/openai/answer', generateAnswer);
