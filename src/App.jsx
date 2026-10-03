@@ -9,191 +9,112 @@ function App() {
 
   return (
     <>
-          <nav>
-        <h1>Glassco Bath Shower Glass Generator</h1>
-    </nav>
-
-    <div class="container">
-        
-        <form class="image-form">
-            <h2>What would you like to edit about the image?</h2>
-            <br/>
-                <h3>Door System Type:</h3>
-                <div class="select-Container">
-                    <select name="systemType" id="systemType">
-
-                        <option value="Pivot">Pivot</option>
-                        <option value="Frameless">Frameless</option>
-                        <option value="Sliding">Sliding</option>
-                        <option value="Alcove">Alcove</option>
-                        <option value="Enclosure">Enclosure</option>
-
-                    </select>
-                    <img src="UI/Pictures/Systems/Pivot.jpg" id="systemTypeImg" class="selection-Image"/>
-                </div>
-
-                <h3>Type of Glass:</h3>
-                <div class="select-Container">
-                    <select name="glassType" id="glassType">
-
-                        <option value="Clear">Clear</option>
-                        <option value="Bronze">Bronze</option>
-                        <option value="Frosted">Frosted</option>
-                        <option value="Grey">Grey</option>
-                        <option value="Hammered">Hammered</option>
-                        <option value="HD">HD</option>
-                        <option value="Low Iron">Low Iron</option>
-                        <option value="Rain">Rain</option>
-                        <option value="Tinted">Tinted</option>
-
-                    </select>
-                    <img src="UI/Pictures/Glass/Clear.png" id="glassTypeImg" class="selection-Image"/>
-                </div>
-
-                <h3>Pull Handle Type:</h3>
-                <div class="select-Container">
-                    <select name="pullHandle" id="pullHandle">
-
-                        <option value="O-Style">O-Style</option>
-                        <option value="I-Style">I-Style</option>
-                        <option value="C-Style">C-Style</option>
-                        <option value="U-Style">U-Style</option>
-
-                    </select>
-                    <img src="UI/Pictures/Pull Handles/O-Style.jpg"  id="pullHandleImg" class="selection-Image"/>
-                </div>
-
-                <h3 id="doorHingeText">Door Hinge Type:</h3>
-                <div class="select-Container" id="hingeContainer">
-                    <select name="doorHinge" id="doorHinge">
-
-                        <option value="Trento">Trento</option>
-                        <option value="Zero">Zero</option>
-                        <option value="Lugano">Lugano</option>
-                        <option value="Como">Como</option>
-
-                        <option value="Bellagio">Bellagio</option>
-                        <option value="Vienna">Vienna</option>
-                        <option value="Geneva">Geneva</option>
-                        <option value="Junior Geneva">Junior Geneva</option>
-
-                        <option value="Cologne">Cologne</option>
-                        <option value="Prima">Prima</option>
-                        <option value="Senior Prima">Senior Prima</option>
-                        <option value="Junior Prima">Junior Prima</option>
-
-                        <option value="Pinnacle">Pinnacle</option>
-                        <option value="Cardiff">Cardiff</option>
-                        <option value="Victoria">Victoria</option>
-                        <option value="Vernon">Vernon</option>
-
-                        <option value="Plymouth">Plymouth</option>
-                        <option value="Zurich">Zurich</option>
-                        <option value="Regal">Regal</option>
-                        <option value="Palermo">Palermo</option>
-
-                        <option value="Melbourne">Melbourne</option>
-                        <option value="Petite">Petite</option>
-                        <option value="Concord">Concord</option>
-                        <option value="Madrid">Madrid</option>
-
-                        <option value="Ultimate">Ultimate</option>
-                        <option value="Roman">Roman</option>
-                        <option value="Grande">Grande</option>
-                        <option value="Sydney">Sydney</option>
-
-                        <option value="Atlas">Atlas</option>
-                        <option value="Light Duty">Light Duty</option>
-
-                    </select>
-                    <img src="UI/Pictures/Door Hinges/Trento.jpg" id="doorHingeImg" class="selection-Image"/>
-                </div>
-
-                <h3>Clamps and Brackets Type:</h3>
-                <div class="select-Container">
-                    <select name="bracketType" id="bracketType">
-
-                        <option value="Zero">Zero</option>
-                        <option value="Center Mount">Center Mount</option>
-                        <option value="Offset - Face Mount">Offset / Face Mount</option>
-                        <option value="Glass to Glass">Glass to Glass</option>
-
-                        <option value="Sleeve Over">Sleeve Over</option>
-                        <option value="Operable Transom">Operable Transom</option>
-                        <option value="Glass Shelf">Glass Shelf</option>
-                        <option value="Wall Mount">Wall Mount</option>
-
-                    </select>
-                    <img src="UI/Pictures/Brackets/Zero.jpg"  id="bracketTypeImg" class="selection-Image"/>
-                </div>
-
-                <h3>Hardware Finish:</h3>
-                <div class="select-Container" id="finishContainer">
-                    <select name="hardwareFinish" id="hardwareFinish">
-
-                        <option value="Polished Chrome">Polished Chrome</option>
-                        <option value="Brushed Chrome">Brushed Chrome</option>
-                        <option value="Matte Black">Matte Black</option>
-
-                        <option value="Polished Stainless Steel">Polished Stainless Steel</option>
-                        <option value="Brushed Stainless Steel">Brushed Stainless Steel</option>
-
-                        <option value="Brushed Nickel">Brushed Nickel</option>
-                        <option value="Polished Nickel">Polished Nickel</option>
-                        <option value="Satin Nickel">Satin Nickel</option>
-                        <option value="Gunmetal">Gunmetal</option>
-                        <option value="Matte Gunmetal">Matte Gunmetal</option>
-                        <option value="Oil Rubbed Bronze">Oil Rubbed Bronze</option>
-
-                        <option value="Polished Brass">Polished Brass</option>
-                        <option value="Satin Brass">Satin Brass</option>
-                        <option value="Vintage Brass">Vintage Brass</option>
-                        <option value="Brushed Bronze">Brushed Bronze</option>
-                        <option value="Dark Brushed Bronze">Dark Brushed Bronze</option>
-                        <option value="French Gold">French Gold</option>
-                        <option value="Modern Gold">Modern Gold</option>
-
-                        <option value="Rose Gold">Rose Gold</option>
-
-                        <option value="Unlacquered Brass">Unlacquered Brass</option>
-
-                    </select>
-                    <img src="UI/Pictures/Finishes/Polished Chrome.png" id="hardwareFinishImg" class="selection-Image"/>
-                </div>
-
-            <h2>Image(s) To Edit</h2>
-            <label>
-                <input type="file" id="imageInput" name="image" multiple/>
-                <button>Generate Photo(s)</button>
-            </label>
-        </form>
-    </div>
-
-    <form class="variation-form ">
-        <button class="variationBtn">Add Variation</button>
-    </form>
-
-    <br/>
-
-
-    <div id="dot-container" style="text-align:center">
-        <span class="dot" onclick="currentSlide(1)"></span>
-    </div>
-    <br/>
-
-    <div class="slideshow-container" id="slideshow-container">
-
-
-        <div id="imgContainer">
-            <div class="mySlides fade" id="thumbnail0-container">
-                <img src="https://placehold.co/1024x1024" style="width:100%" alt="thumbnail0" id="thumbnail0"/>
-            </div>
+      <section id="center">
+        <div className="hero">
+          <img src={heroImg} className="base" width="170" height="179" alt="" />
+          <img src={reactLogo} className="framework" alt="React logo" />
+          <img src={viteLogo} className="vite" alt="Vite logo" />
         </div>
+        <div>
+          <h1>Get started</h1>
+          <p>
+            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+          </p>
+        </div>
+        <button
+          type="button"
+          className="counter"
+          onClick={() => setCount((count) => count + 1)}
+        >
+          Count is {count}
+        </button>
+      </section>
 
+      <div className="ticks"></div>
 
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-    </div>
+      <section id="next-steps">
+        <div id="docs">
+          <svg className="icon" role="presentation" aria-hidden="true">
+            <use href="/icons.svg#documentation-icon"></use>
+          </svg>
+          <h2>Documentation</h2>
+          <p>Your questions, answered</p>
+          <ul>
+            <li>
+              <a href="https://vite.dev/" target="_blank">
+                <img className="logo" src={viteLogo} alt="" />
+                Explore Vite
+              </a>
+            </li>
+            <li>
+              <a href="https://react.dev/" target="_blank">
+                <img className="button-icon" src={reactLogo} alt="" />
+                Learn more
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div id="social">
+          <svg className="icon" role="presentation" aria-hidden="true">
+            <use href="/icons.svg#social-icon"></use>
+          </svg>
+          <h2>Connect with us</h2>
+          <p>Join the Vite community</p>
+          <ul>
+            <li>
+              <a href="https://github.com/vitejs/vite" target="_blank">
+                <svg
+                  className="button-icon"
+                  role="presentation"
+                  aria-hidden="true"
+                >
+                  <use href="/icons.svg#github-icon"></use>
+                </svg>
+                GitHub
+              </a>
+            </li>
+            <li>
+              <a href="https://chat.vite.dev/" target="_blank">
+                <svg
+                  className="button-icon"
+                  role="presentation"
+                  aria-hidden="true"
+                >
+                  <use href="/icons.svg#discord-icon"></use>
+                </svg>
+                Discord
+              </a>
+            </li>
+            <li>
+              <a href="https://x.com/vite_js" target="_blank">
+                <svg
+                  className="button-icon"
+                  role="presentation"
+                  aria-hidden="true"
+                >
+                  <use href="/icons.svg#x-icon"></use>
+                </svg>
+                X.com
+              </a>
+            </li>
+            <li>
+              <a href="https://bsky.app/profile/vite.dev" target="_blank">
+                <svg
+                  className="button-icon"
+                  role="presentation"
+                  aria-hidden="true"
+                >
+                  <use href="/icons.svg#bluesky-icon"></use>
+                </svg>
+                Bluesky
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <div className="ticks"></div>
+      <section id="spacer"></section>
     </>
   )
 }
