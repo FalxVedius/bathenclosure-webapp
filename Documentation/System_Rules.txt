@@ -1,0 +1,8 @@
+//-----------------------------------
+//Sliding System:
+//Rules for all the items Removed when Sliding System is selected
+//
+//-----------------------------------
+1.) No Wall clamps
+2.) No Door clamps
+
