@@ -135,11 +135,6 @@ export default function GlasscoBathShowerGlassGenerator() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
 
-  const activeEditor = useMemo(
-    () => editors.find((editor) => editor.id === 1) || editors[0],
-    [editors]
-  );
-
   const updateEditor = (id, key, value) => {
     setEditors((current) =>
       current.map((editor) =>
