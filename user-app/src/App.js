@@ -1,4 +1,5 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
+import GeneratedImageCarousel from "./Carousel";
 
 // Place this file in your React app and keep the existing styles.css available.
 // The image assets should be inside your public/UI/Pictures directory.
@@ -119,13 +120,15 @@ function EditorForm({ editor, onChange, onSubmit, isSubmitting }) {
       <h2>Image(s) To Edit</h2>
       <label>
         <input type="file" name="image" accept="image/*" multiple />
-        <button type="submit" disabled={isSubmitting}>
+        <button type="submit" className="submittionBtn" disabled={isSubmitting}>
           {isSubmitting ? "Generating..." : "Generate Photo(s)"}
         </button>
       </label>
     </form>
   );
 }
+
+
 
 export default function GlasscoBathShowerGlassGenerator() {
   const [editors, setEditors] = useState([createEditor(1)]);
@@ -134,6 +137,7 @@ export default function GlasscoBathShowerGlassGenerator() {
   const [activeImage, setActiveImage] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [generatedImageIndex, updateIndex] = useState(0);
 
   const updateEditor = (id, key, value) => {
     setEditors((current) =>
@@ -147,11 +151,13 @@ export default function GlasscoBathShowerGlassGenerator() {
 
   const addVariation = (event) => {
     event.preventDefault();
+        console.log(generatedImageIndex);
     setEditors((current) => [...current, createEditor(nextEditorId)]);
     setNextEditorId((id) => id + 1);
   };
 
   const submitEditor = async (editorId, formElement) => {
+
     const editor = editors.find((item) => item.id === editorId);
     if (!editor) return;
 
@@ -165,7 +171,6 @@ export default function GlasscoBathShowerGlassGenerator() {
     setIsSubmitting(true);
 
     try {
-      let generatedImageIndex = Math.max(0, images.length - 1);
 
       for (const file of files) {
         const base64 = await fileToBase64(file);
@@ -200,29 +205,23 @@ export default function GlasscoBathShowerGlassGenerator() {
 
         const data = await response.json();
         const fullPath = "data:image/png;base64," + data.imgPath;
+        console.log(fullPath)
         if (!data.imgPath) {
           throw new Error("The server response did not include an image path.");
         }
 
         if (generatedImageIndex === 0) {
           setImages((current) => [fullPath, ...current.slice(1)]);
-          setActiveImage(0);
         } else {
           setImages((current) => [...current, fullPath]);
-          setActiveImage(generatedImageIndex);
         }
-        generatedImageIndex += 1;
+        updateIndex(generatedImageIndex + 1);
       }
     } catch (err) {
       setError(err.message || "Something went wrong while generating the image.");
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const showSlide = (index) => {
-    if (!images.length) return;
-    setActiveImage((index + images.length) % images.length);
   };
 
   return (
@@ -251,54 +250,11 @@ export default function GlasscoBathShowerGlassGenerator() {
 
       <br />
 
-      <div id="dot-container" style={{ textAlign: "center" }}>
-        {images.map((_, index) => (
-          <button
-            key={index}
-            type="button"
-            className={`dot${activeImage === index ? " active" : ""}`}
-            onClick={() => showSlide(index)}
-            aria-label={`Show image ${index + 1}`}
-          />
-        ))}
-      </div>
+      <GeneratedImageCarousel 
+        images={images}
+        generatedImageIndex={generatedImageIndex} 
+      />
 
-      <br />
-
-      <div className="slideshow-container" id="slideshow-container">
-        <div id="imgContainer">
-          {images.map((src, index) => (
-            <div
-              key={`${src}-${index}`}
-              className="mySlides fade"
-              style={{ display: activeImage === index ? "block" : "none" }}
-            >
-              <img
-                src={src}
-                style={{ width: "100%" }}
-                alt={`Generated shower glass design ${index + 1}`}
-              />
-            </div>
-          ))}
-        </div>
-
-        <button
-          type="button"
-          className="prev"
-          onClick={() => showSlide(activeImage - 1)}
-          aria-label="Previous image"
-        >
-          &#10094;
-        </button>
-        <button
-          type="button"
-          className="next"
-          onClick={() => showSlide(activeImage + 1)}
-          aria-label="Next image"
-        >
-          &#10095;
-        </button>
-      </div>
     </>
   );
 }
