@@ -5,54 +5,56 @@ import GeneratedImageCarousel from "./Carousel";
 // The image assets should be inside your public/UI/Pictures directory.
 
 const OPTIONS = {
-  systemType: ["Pivot", "Frameless", "Sliding", "Alcove", "Enclosure"],
-  glassType: ["Clear", "Bronze", "Frosted", "Grey", "Hammered", "HD", "Low Iron", "Rain", "Tinted"],
-  pullHandle: ["O-Style", "I-Style", "C-Style", "U-Style"],
-  doorHinge: [
-    "Trento", "Zero", "Lugano", "Como", "Bellagio", "Vienna", "Geneva",
-    "Junior Geneva", "Cologne", "Prima", "Senior Prima", "Junior Prima",
-    "Pinnacle", "Cardiff", "Victoria", "Vernon", "Plymouth", "Zurich",
-    "Regal", "Palermo", "Melbourne", "Petite", "Concord", "Madrid",
-    "Ultimate", "Roman", "Grande", "Sydney", "Atlas", "Light Duty",
-  ],
-  bracketType: [
-    "Zero", "Center Mount", "Offset / Face Mount", "Glass to Glass",
-    "Sleeve Over", "Operable Transom", "Glass Shelf", "Wall Mount",
-  ],
+  systemType: ["Sliding", "Hinged", "Panel Only"],
+  doorHinge: ["Beavaled", "Square"],
+  slidingType: ["Barn Door", "Bypass"],
+  barnDoorType: ["Square Header", "Rounded Header"],
+  bypassType: ["Framed", "Frameless"],
+  pullHandle: ["Pull", "Knob", "Finger Pull", "Ladder Pull", "Towel Bar"],
+  bracketType: ["Beavaled", "Square"],
+  glassType: ["Clear", "Rain", "Frosted"],
   hardwareFinish: [
     "Polished Chrome", "Brushed Chrome", "Matte Black",
     "Polished Stainless Steel", "Brushed Stainless Steel", "Brushed Nickel",
     "Polished Nickel", "Satin Nickel", "Gunmetal", "Matte Gunmetal",
     "Oil Rubbed Bronze", "Polished Brass", "Satin Brass", "Vintage Brass",
     "Brushed Bronze", "Dark Brushed Bronze", "French Gold", "Modern Gold",
-    "Rose Gold", "Unlacquered Brass",
-  ],
+    "Rose Gold", "Unlacquered Brass",],
 };
 
 const INITIAL_VALUES = {
-  systemType: "Pivot",
+  systemType: "Sliding",
+  doorHinge: "Beavaled",
+  slidingType: "Barn Door",
+  barnDoorType: "Square Header",
+  bypassType: "Framed",
+  pullHandle: "Pull",
+  bracketType: "Beavaled",
   glassType: "Clear",
-  pullHandle: "O-Style",
-  doorHinge: "Trento",
-  bracketType: "Zero",
   hardwareFinish: "Polished Chrome",
 };
 
 const ASSET_PATHS = {
   systemType: (value) => `/UI/Pictures/Systems/${value}.jpg`,
-  glassType: (value) => `/UI/Pictures/Glass/${value}.png`,
-  pullHandle: (value) => `/UI/Pictures/Pull Handles/${value}.jpg`,
   doorHinge: (value) => `/UI/Pictures/Door Hinges/${value}.jpg`,
+  slidingType: (value) => `/UI/Pictures/Sliding/${value}.jpg`,
+  barnDoorType: (value) => `/UI/Pictures/Barn Door/${value}.jpg`,
+  bypassType: (value) => `/UI/Pictures/Bypass/${value}.jpg`,
+  pullHandle: (value) => `/UI/Pictures/Pull Handles/${value}.jpg`,
   bracketType: (value) => `/UI/Pictures/Brackets/${value === "Offset / Face Mount" ? "Offset - Face Mount" : value}.jpg`,
+  glassType: (value) => `/UI/Pictures/Glass/${value}.png`,
   hardwareFinish: (value) => `/UI/Pictures/Finishes/${value}.png`,
 };
 
 const FIELD_CONFIG = [
-  { key: "systemType", label: "Door System Type:", initialImage: "/UI/Pictures/Systems/Pivot.jpg" },
-  { key: "glassType", label: "Type of Glass:", initialImage: "/UI/Pictures/Glass/Clear.png" },
-  { key: "pullHandle", label: "Pull Handle Type:", initialImage: "/UI/Pictures/Pull Handles/O-Style.jpg" },
-  { key: "doorHinge", label: "Door Hinge Type:", initialImage: "/UI/Pictures/Door Hinges/Trento.jpg" },
-  { key: "bracketType", label: "Clamps and Brackets Type:", initialImage: "/UI/Pictures/Brackets/Zero.jpg" },
+  { key: "systemType", label: "Enclosure Type:", initialImage: "/UI/Pictures/Systems/Sliding.jpg" },
+  { key: "doorHinge", label: "Hinge Type:", initialImage: "/UI/Pictures/Door Hinges/Beavaled.jpg" },
+  { key: "slidingType", label: "Sliding Type:", initialImage: "/UI/Pictures/Door Hinges/Barn Door.jpg" },
+  { key: "barnDoorType", label: "Barn Door Type:", initialImage: "/UI/Pictures/Door Hinges/Square Header.jpg" },
+  { key: "bypassType", label: "Bypass Type:", initialImage: "/UI/Pictures/Door Hinges/Framed.jpg" },
+  { key: "pullHandle", label: "Handle Type:", initialImage: "/UI/Pictures/Pull Handles/Pull.jpg" },
+  { key: "bracketType", label: "Clamps and Brackets Type:", initialImage: "/UI/Pictures/Brackets/Beavaled.jpg" },
+  { key: "glassType", label: "Glass Type:", initialImage: "/UI/Pictures/Glass/Clear.png" },
   { key: "hardwareFinish", label: "Hardware Finish:", initialImage: "/UI/Pictures/Finishes/Polished Chrome.png" },
 ];
 
@@ -76,7 +78,11 @@ function EditorForm({ editor, onChange, onSubmit, isSubmitting }) {
   const { values } = editor;
 
   const update = (key, value) => onChange(editor.id, key, value);
-  const isSliding = values.systemType === "Sliding";
+  const noHinge = (values.systemType === "Sliding" || values.systemType === "Panel Only");
+  const noHandle = ( values.systemType === "Panel Only");
+  const noSliding = (values.systemType === "Panel Only" || values.systemType === "Hinged");
+  const noBarnDoor = (values.systemType === "Panel Only" || values.systemType === "Hinged" || values.slidingType === "Bypass");
+  const noBypass = (values.systemType === "Panel Only" || values.systemType === "Hinged" || values.slidingType === "Barn Door");
 
   return (
     <form
@@ -90,13 +96,17 @@ function EditorForm({ editor, onChange, onSubmit, isSubmitting }) {
       <br />
 
       {FIELD_CONFIG.map(({ key, label, initialImage }) => {
-        const hiddenHinge = key === "doorHinge" && isSliding;
+        const hiddenHinge = key === "doorHinge" && noHinge;
+        const hiddenHandle = key === "pullHandle" && noHandle;
+        const hiddenSliding = key === "slidingType" && noSliding;
+        const hiddenBarnDoor = key === "barnDoorType" && noBarnDoor;
+        const hiddenBypass = key === "bypassType" && noBypass;
         const imageSrc = ASSET_PATHS[key](values[key]) || initialImage;
 
         return (
           <React.Fragment key={key}>
-            <h3 className={hiddenHinge ? "hidden" : ""}>{label}</h3>
-            <div className={`select-Container${hiddenHinge ? " hidden" : ""}`}>
+            <h3 className={(hiddenHinge || hiddenSliding || hiddenBarnDoor || hiddenBypass || hiddenHandle) ? "hidden" : ""}>{label}</h3>
+            <div className={`select-Container${(hiddenHinge || hiddenSliding || hiddenBarnDoor || hiddenBypass || hiddenHandle) ? " hidden" : ""}`}>
               <select
                 name={key}
                 value={values[key]}
@@ -179,14 +189,20 @@ export default function GlasscoBathShowerGlassGenerator() {
         const payload = {
           system: values.systemType,
           systemImg: `public${ASSET_PATHS.systemType(values.systemType)}`,
-          glass: values.glassType,
-          glassImg: `public${ASSET_PATHS.glassType(values.glassType)}`,
-          handle: values.pullHandle,
-          handleImg: `public${ASSET_PATHS.pullHandle(values.pullHandle)}`,
           hinge: values.doorHinge,
           hingeImg: `public${ASSET_PATHS.doorHinge(values.doorHinge)}`,
+          sliding: values.slidingType,
+          slidingImg: `public${ASSET_PATHS.doorHinge(values.slidingType)}`,
+          barnDoor: values.barnDoorType,
+          barnDoorImg: `public${ASSET_PATHS.doorHinge(values.barnDoorType)}`,
+          bypass: values.bypassType,
+          bypassImg: `public${ASSET_PATHS.doorHinge(values.bypassType)}`,
+          handle: values.pullHandle,
+          handleImg: `public${ASSET_PATHS.pullHandle(values.pullHandle)}`,
           bracket: values.bracketType,
           bracketImg: `public${ASSET_PATHS.bracketType(values.bracketType)}`,
+          glass: values.glassType,
+          glassImg: `public${ASSET_PATHS.glassType(values.glassType)}`,
           finish: values.hardwareFinish,
           hardwareFinishImg: `public${ASSET_PATHS.hardwareFinish(values.hardwareFinish)}`,
           image: base64,
@@ -227,7 +243,7 @@ export default function GlasscoBathShowerGlassGenerator() {
   return (
     <>
       <nav>
-        <h1>Glassco Bath Shower Glass Generator</h1>
+        <h1>Glassco Shower Enclosure Generator</h1>
       </nav>
 
       <div className="container">
