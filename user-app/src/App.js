@@ -5,21 +5,21 @@ import GeneratedImageCarousel from "./Carousel";
 // The image assets should be inside your public/UI/Pictures directory.
 
 const OPTIONS = {
-  systemType: ["Sliding", "Hinged", "Panel Only"],
-  doorHinge: ["Beavaled", "Square"],
+  systemType: ["Sliding", "Hinged", "Panel Only"],  
+  doorHinge: ["Beavaled", "Square"], 
   slidingType: ["Barn Door", "Bypass"],
-  barnDoorType: ["Square Header", "Rounded Header"],
-  bypassType: ["Framed", "Frameless"],
-  pullHandle: ["Pull", "Knob", "Finger Pull", "Ladder Pull", "Towel Bar"],
-  bracketType: ["Beavaled", "Square"],
-  glassType: ["Clear", "Rain", "Frosted"],
+  barnDoorType: ["Square Header", "Rounded Header"], 
+  bypassType: ["Framed", "Frameless"], 
+  pullHandle: ["Pull", "Knob", "Finger Pull", "Ladder Pull", "Towel Bar"], 
+  bracketType: ["Beavaled", "Square"], 
+  glassType: ["Clear", "Rain", "Frosted"], 
   hardwareFinish: [
     "Polished Chrome", "Brushed Chrome", "Matte Black",
     "Polished Stainless Steel", "Brushed Stainless Steel", "Brushed Nickel",
     "Polished Nickel", "Satin Nickel", "Gunmetal", "Matte Gunmetal",
     "Oil Rubbed Bronze", "Polished Brass", "Satin Brass", "Vintage Brass",
     "Brushed Bronze", "Dark Brushed Bronze", "French Gold", "Modern Gold",
-    "Rose Gold", "Unlacquered Brass",],
+    "Rose Gold", "Unlacquered Brass",], 
 };
 
 const INITIAL_VALUES = {
@@ -35,25 +35,25 @@ const INITIAL_VALUES = {
 };
 
 const ASSET_PATHS = {
-  systemType: (value) => `/UI/Pictures/Systems/${value}.jpg`,
-  doorHinge: (value) => `/UI/Pictures/Door Hinges/${value}.jpg`,
-  slidingType: (value) => `/UI/Pictures/Sliding/${value}.jpg`,
-  barnDoorType: (value) => `/UI/Pictures/Barn Door/${value}.jpg`,
-  bypassType: (value) => `/UI/Pictures/Bypass/${value}.jpg`,
-  pullHandle: (value) => `/UI/Pictures/Pull Handles/${value}.jpg`,
-  bracketType: (value) => `/UI/Pictures/Brackets/${value === "Offset / Face Mount" ? "Offset - Face Mount" : value}.jpg`,
+  systemType: (value) => `/UI/Pictures/Systems/${value}.png`,
+  doorHinge: (value) => `/UI/Pictures/Door Hinges/${value}.png`,
+  slidingType: (value) => `/UI/Pictures/Sliding/${value}.png`,
+  barnDoorType: (value) => `/UI/Pictures/Barn Door/${value}.png`,
+  bypassType: (value) => `/UI/Pictures/Bypass/${value}.png`,
+  pullHandle: (value) => `/UI/Pictures/Pull Handles/${value}.png`,
+  bracketType: (value) => `/UI/Pictures/Brackets/${value === "Offset / Face Mount" ? "Offset - Face Mount" : value}.png`,
   glassType: (value) => `/UI/Pictures/Glass/${value}.png`,
   hardwareFinish: (value) => `/UI/Pictures/Finishes/${value}.png`,
 };
 
 const FIELD_CONFIG = [
-  { key: "systemType", label: "Enclosure Type:", initialImage: "/UI/Pictures/Systems/Sliding.jpg" },
-  { key: "doorHinge", label: "Hinge Type:", initialImage: "/UI/Pictures/Door Hinges/Beavaled.jpg" },
-  { key: "slidingType", label: "Sliding Type:", initialImage: "/UI/Pictures/Door Hinges/Barn Door.jpg" },
-  { key: "barnDoorType", label: "Barn Door Type:", initialImage: "/UI/Pictures/Door Hinges/Square Header.jpg" },
-  { key: "bypassType", label: "Bypass Type:", initialImage: "/UI/Pictures/Door Hinges/Framed.jpg" },
-  { key: "pullHandle", label: "Handle Type:", initialImage: "/UI/Pictures/Pull Handles/Pull.jpg" },
-  { key: "bracketType", label: "Clamps and Brackets Type:", initialImage: "/UI/Pictures/Brackets/Beavaled.jpg" },
+  { key: "systemType", label: "Enclosure Type:", initialImage: "/UI/Pictures/Systems/Sliding.png" },
+  { key: "doorHinge", label: "Hinge Type:", initialImage: "/UI/Pictures/Door Hinges/Beavaled.png" },
+  { key: "slidingType", label: "Sliding Type:", initialImage: "/UI/Pictures/Door Hinges/Barn Door.png" },
+  { key: "barnDoorType", label: "Barn Door Type:", initialImage: "/UI/Pictures/Door Hinges/Square Header.png" },
+  { key: "bypassType", label: "Bypass Type:", initialImage: "/UI/Pictures/Door Hinges/Framed.png" },
+  { key: "pullHandle", label: "Handle Type:", initialImage: "/UI/Pictures/Pull Handles/Pull.png" },
+  { key: "bracketType", label: "Clamps and Brackets Type:", initialImage: "/UI/Pictures/Brackets/Beavaled.png" },
   { key: "glassType", label: "Glass Type:", initialImage: "/UI/Pictures/Glass/Clear.png" },
   { key: "hardwareFinish", label: "Hardware Finish:", initialImage: "/UI/Pictures/Finishes/Polished Chrome.png" },
 ];
